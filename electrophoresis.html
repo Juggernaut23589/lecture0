@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="electrophoresis.css">
+    <style>
+    .error {color: #FF0000;}
+    </style>
+    <title>Electrophoresis</title>
+  </head>
+  <body>
+    <?php
+// define variables and set to empty values
+$sn = $fn = $hn = $cn = $cns = $dt = $haemoglobin = $mynotes = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $sn = test_input($_POST["sn"]);
+  $fn = test_input($_POST["fn"]);
+  $hn = test_input($_POST["hn"]);
+  $cn = test_input($_POST["cn"]);
+  $cns = test_input($_POST["cns"]);
+  $dt = test_input($_POST["dt"]);
+  $haemoglobin = test_input($_POST["haemoglobin"]);
+  $mynotes = test_input($_POST["mynotes"]);
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?>
+
+    <h1><center>UNIVERSITY COLLEGE HOSPITAL, IBADAN</center></h1>
+    <br></br>
+    <h2><center>HAEMOGLOBIN ELECTROPHORESIS</center></h2>
+
+    <h3><left>Please fill the details below</left></h2>
+
+
+    <p>Please note: all fields are required</p>
+    <br></br>
+
+
+
+    <form method="post" action="/result.php">
+      <label for="sn">SURNAME:</label>
+      <input id='sn' input type= "text" name="sn" placeholder="surname" required>
+
+      <label for="fn">FIRST NAME:</label>
+      <input id='fn' input type= "text" name="fn" placeholder="first name" required>
+
+      <label for="hn">HOSPITAL NUMBER:</label>
+      <input id='hn' input type= "number" name="hn" placeholder="hospital number" required>
+
+      <label for="cn">CLINIC:</label>
+      <input id='cn' input type= "text" name="cn" placeholder="clinic" required>
+
+      <br></br>
+
+      <label for="cns">CONSULTANT:</label>
+      <input id='cns' input type= "text" name="cns" placeholder="consultant" required>
+
+      <label for="dt">DATE:</label>
+      <input id='dt' input type= "datetime-local" name="dt" placeholder="date" required>
+
+      <br></br>
+      <p><h3>Electrophoresis Reveals:</h3></p>
+      <select name = "haemoglobin">
+        <option value = "ac">A+C</option>
+        <option value = "as">A+S</option>
+        <option value = "a">A</option>
+        <option value = "c">C</option>
+        <option value = "s">S</option>
+        <option value = "sc">S+C</option>
+      </select>
+      <p>NOTES:</p>
+      <textarea name="mynotes" rows=8 cols= 80></textarea>
+
+      <p>SIGNATURE:________________________</p>
+      <input id='sub' type="submit" name="" value="SUBMIT">
+
+
+
+
+
+
+    </form>
+  </body>
+
+
+
+</html>
